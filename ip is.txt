@@ -1,0 +1,78 @@
+Hello this is a registration form by Akshay , The IP is 65.0.181.9
+
+Steps for the mysql connect
+
+─(kali㉿kali)-[~/new_instance]
+└─$ ssh -i "ec2-exercise.pem" ubuntu@ec2-13-233-146-21.ap-south-1.compute.amazonaws.com
+Welcome to Ubuntu 24.04 LTS (GNU/Linux 6.8.0-1008-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun May  5 19:52:56 UTC 2024
+
+  System load:  0.0               Processes:             126
+  Usage of /:   34.2% of 6.71GB   Users logged in:       1
+  Memory usage: 69%               IPv4 address for enX0: 172.31.8.214
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+11 updates can be applied immediately.
+11 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Sun May  5 19:32:41 2024 from 103.177.252.39
+ubuntu@ip-172-31-8-214:~$ sudo systemctl status mysql
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/usr/lib/systemd/system/mysql.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2024-05-05 19:33:11 UTC; 20min ago
+    Process: 11580 ExecStartPre=/usr/share/mysql/mysql-systemd-start pre (code=exited, status=0/SUCCESS)
+   Main PID: 11589 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 1130)
+     Memory: 409.8M (peak: 419.1M)
+        CPU: 5.602s
+     CGroup: /system.slice/mysql.service
+             └─11589 /usr/sbin/mysqld
+
+May 05 19:33:09 ip-172-31-8-214 systemd[1]: Starting mysql.service - MySQL Community Server...
+May 05 19:33:11 ip-172-31-8-214 systemd[1]: Started mysql.service - MySQL Community Server.
+ubuntu@ip-172-31-8-214:~$ sudo mysql -u root 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.36-2ubuntu3 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use project;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'Hellofriend@123';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT ALL PRIVILEGES ON project.* TO 'admin'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
